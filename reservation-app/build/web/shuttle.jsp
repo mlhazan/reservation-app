@@ -4,7 +4,7 @@
     Author     : Hasan
 --%>
 
-<%@ page import="java.sql.*,com.reservation.database.*"%>
+<%@ page import="java.sql.*,com.reservation.database.*" errorPage="error.jsp"%>
 <jsp:useBean id="connection" class="com.reservation.database.ConnectionBean"
              scope="session"/>
 <%
@@ -15,14 +15,19 @@
      connection.executeUpdate(sql);
 %>
 <html>
+     <head>
+        <title>Conference Reservation Form</title>
+
+       <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
     <body>
     <center>
         <font size="+2" face="arial"><b>Shuttle Reservation</b></font>
+        
         <form action="confirm.jsp" method="post">
-            <table border=1 bgcolor="tan" width="50%" align="center">
-                <tr><td>
-                        <table border="0" bgcolor="white" cellspacing=0 width="100%">
-                            <tr bgcolor="tan"><th>&nbsp;</th>
+            
+                        <table id ="customers">
+                            <tr><th>&nbsp;</th>
                                 <th>Airport</th><th>Time</th><th>Seats Available</th></tr>
                                     <%
                                          sql = "SELECT s.* from shuttles s, conferences c where c.id="
@@ -33,7 +38,7 @@
                                     %>
                             <td>
                                 <input type="radio" name="shuttle"
-                                       value="<%= results.getString("id")%>">
+                                       value="<%= results.getString("id")%>"onClick="document.getElementById('button').disabled = false" />
                             </td>
                             <% } else { %>
                             <td>&nbsp;</td>
@@ -43,11 +48,12 @@
                             <td align="center"><%= results.getString("seats")%></td>
                 </tr>
                 <% }%>
+            
             </table>
-            </td></tr></table>
             <p>
                 <input type="hidden" name="show" value="<%= showID%>">
-                <input type="submit" value="Next (Review Reservations)">
+             
+                <input id="button" type="submit" disabled name="submit" value="Next (Review Reservations)">
         </form>
     </center>
 </body>
