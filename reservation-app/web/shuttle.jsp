@@ -11,8 +11,8 @@
      String showID = request.getParameter("show");
      connection.setAutoCommit(false);
      String sql;
-     sql = "UPDATE CONFERENCES set seats=seats-1 where id=" + showID;
-     connection.executeUpdate(sql);
+//     sql = "UPDATE CONFERENCES set seats=seats-1 where id=" + showID;
+//     connection.executeUpdate(sql);
 %>
 <html>
      <head>
