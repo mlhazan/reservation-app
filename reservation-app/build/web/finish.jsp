@@ -13,14 +13,13 @@
     </head>
     <body>
         <%
-             ConnectionBean connection
-                     = (ConnectionBean) session.getValue("connection");
-             if (request.getParameter("commit") != null) {
-                  connection.commit();
-             } else {
-                  connection.rollback();
-             }
-             session.removeAttribute("connection");
+            ConnectionBean connection= (ConnectionBean) session.getValue("connection");
+            if (request.getParameter("commit") != null) {
+                connection.commit();
+            } else {
+                connection.rollback();
+            }
+            session.removeAttribute("connection");
         %>
     <center>
         <table id="customers"><tr><td>

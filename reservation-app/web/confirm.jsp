@@ -15,8 +15,6 @@
      
      String shuttleID = request.getParameter("shuttle");
      String showID = request.getParameter("show");
-     
-     String ID = request.getParameter("show");
      sql = "UPDATE CONFERENCES set seats=seats-1 where id=" + showID;
      connection.executeUpdate(sql);
    
